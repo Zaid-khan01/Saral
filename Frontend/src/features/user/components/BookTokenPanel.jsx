@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import API from "../../../services/api";
 import {
     Search,
     MapPin,
@@ -66,12 +66,70 @@ const BookTokenPanel = () => {
 
     useEffect(() => {
 
-        const storedOrganizations =
-            JSON.parse(localStorage.getItem("organizations")) || [];
+        const fetchOrganizations = async () => {
 
-        setOrganizations(storedOrganizations);
+            try {
+
+                const response =
+                    await API.get("/organizations");
+
+                const formattedOrganizations =
+                    response.data.organizations.map((org) => {
+
+                        let color =
+                            "from-cyan-500 to-blue-600";
+
+                        if (
+                            org.organizationType ===
+                            "Government Office"
+                        ) {
+                            color =
+                                "from-violet-500 to-indigo-600";
+                        }
+
+                        else if (
+                            org.organizationType ===
+                            "Ration Shop"
+                        ) {
+                            color =
+                                "from-emerald-500 to-green-600";
+                        }
+
+                        else if (
+                            org.organizationType ===
+                            "Service Center"
+                        ) {
+                            color =
+                                "from-amber-500 to-orange-500";
+                        }
+
+                        return {
+                            name: org.organizationName,
+                            type: org.organizationType,
+                            distance: "1.5 km",
+                            wait: "10 mins",
+                            rating: "4.7",
+                            status: "Tokens Available",
+                            crowd: "Medium",
+                            address: org.address,
+                            services: org.services,
+                            color,
+                        };
+                    });
+
+                setOrganizations(formattedOrganizations);
+
+            } catch (error) {
+
+                console.log(error);
+
+            }
+        };
+
+        fetchOrganizations();
 
     }, []);
+
     const filteredOrganizations = organizations.filter((item) => {
         const matchSearch =
             item.name.toLowerCase().includes(search.toLowerCase()) ||

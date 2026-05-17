@@ -88,56 +88,6 @@ const OrganizationRegister = () => {
                 JSON.stringify(response.data.organization)
             );
 
-            // OPTIONAL UI DATA
-            const existingOrganizations =
-                JSON.parse(
-                    localStorage.getItem("organizations")
-                ) || [];
-
-            let color = "from-cyan-500 to-blue-600";
-
-            if (
-                formData.organizationType ===
-                "Government Office"
-            ) {
-                color = "from-violet-500 to-indigo-600";
-            }
-
-            else if (
-                formData.organizationType ===
-                "Ration Shop"
-            ) {
-                color = "from-emerald-500 to-green-600";
-            }
-
-            else if (
-                formData.organizationType ===
-                "Service Center"
-            ) {
-                color = "from-amber-500 to-orange-500";
-            }
-
-            const newOrganization = {
-                name: formData.organizationName,
-                type: formData.organizationType,
-                distance: "1.5 km",
-                wait: "10 mins",
-                rating: "4.7",
-                status: "Tokens Available",
-                crowd: "Medium",
-                address: formData.address,
-                color: color,
-
-                services: formData.services,
-            };
-
-            existingOrganizations.push(newOrganization);
-
-            localStorage.setItem(
-                "organizations",
-                JSON.stringify(existingOrganizations)
-            );
-
             alert("Organization Registered Successfully");
 
             navigate("/organization/dashboard");
