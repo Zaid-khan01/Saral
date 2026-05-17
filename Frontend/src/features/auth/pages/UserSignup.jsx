@@ -130,7 +130,7 @@ const UserSignup = () => {
 
                             onClick={() => {
                                 window.location.href =
-                                    "http://localhost:5000/api/users/google";
+                                    "https://saral-hh7e.onrender.com/api/users/google";
                             }}
 
                             className="
