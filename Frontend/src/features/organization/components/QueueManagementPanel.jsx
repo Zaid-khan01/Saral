@@ -48,7 +48,7 @@ const QueueManagementPanel = () => {
     try {
 
       const response = await fetch(
-        `http://localhost:5000/api/tokens/organization/${organizationName}`
+        `https://saral-hh7e.onrender.com/api/tokens/organization/${organizationName}`
       );
 
       const data = await response.json();
@@ -112,7 +112,7 @@ const QueueManagementPanel = () => {
     try {
 
       const response = await fetch(
-        "http://localhost:5000/api/tokens/call-next",
+        "https://saral-hh7e.onrender.com/api/tokens/call-next",
         {
           method: "PUT",
 
@@ -151,7 +151,7 @@ const QueueManagementPanel = () => {
     try {
 
       await fetch(
-        `http://localhost:5000/api/tokens/complete/${id}`,
+        `https://saral-hh7e.onrender.com/api/tokens/complete/${id}`,
         {
           method: "PUT",
         }
@@ -172,7 +172,7 @@ const QueueManagementPanel = () => {
     try {
 
       await fetch(
-        "http://localhost:5000/api/tokens/pause",
+        "https://saral-hh7e.onrender.com/api/tokens/pause",
         {
           method: "PUT",
 
@@ -202,7 +202,7 @@ const QueueManagementPanel = () => {
     try {
 
       await fetch(
-        "http://localhost:5000/api/tokens/resume",
+        "https://saral-hh7e.onrender.com/api/tokens/resume",
         {
           method: "PUT",
 
@@ -232,7 +232,7 @@ const QueueManagementPanel = () => {
     try {
 
       await fetch(
-        "http://localhost:5000/api/tokens/reset",
+        "https://saral-hh7e.onrender.com/api/tokens/reset",
         {
           method: "DELETE",
 
@@ -262,7 +262,7 @@ const QueueManagementPanel = () => {
     try {
 
       await fetch(
-        `http://localhost:5000/api/tokens/skip/${id}`,
+        `https://saral-hh7e.onrender.com/api/tokens/skip/${id}`,
         {
           method: "PUT",
         }

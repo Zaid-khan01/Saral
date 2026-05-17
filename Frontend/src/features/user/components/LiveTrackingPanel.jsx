@@ -45,7 +45,7 @@ const LiveTrackingPanel = () => {
         try {
 
             const response = await fetch(
-                `http://localhost:5000/api/tokens/organization/${organizationName}`
+                `https://saral-hh7e.onrender.com/api/tokens/organization/${organizationName}`
             );
 
             const data = await response.json();

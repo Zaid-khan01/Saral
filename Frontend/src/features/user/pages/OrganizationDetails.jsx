@@ -73,7 +73,7 @@ const OrganizationDetails = () => {
         try {
             const user = JSON.parse(localStorage.getItem("user"));
             const response = await fetch(
-                "http://localhost:5000/api/tokens/create",
+                "https://saral-hh7e.onrender.com/api/tokens/create",
                 {
                     method: "POST",
 

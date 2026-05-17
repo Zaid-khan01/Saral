@@ -46,7 +46,7 @@ const TokenControlPanel = () => {
     try {
 
       const response = await fetch(
-        `http://localhost:5000/api/tokens/all?organizationName=${organization.name}`
+        `https://saral-hh7e.onrender.com/api/tokens/all?organizationName=${organization.name}`
       );
 
       const data = await response.json();
@@ -95,7 +95,7 @@ const TokenControlPanel = () => {
       setLoading(true);
 
       const response = await fetch(
-        "http://localhost:5000/api/tokens/call-next",
+        "https://saral-hh7e.onrender.com/api/tokens/call-next",
         {
           method: "PUT",
 
@@ -139,7 +139,7 @@ const TokenControlPanel = () => {
     try {
 
       await fetch(
-        `http://localhost:5000/api/tokens/skip/${tokenId}`,
+        `https://saral-hh7e.onrender.com/api/tokens/skip/${tokenId}`,
         {
           method: "PUT",
         }

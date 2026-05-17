@@ -103,7 +103,7 @@ const UserDashboard = () => {
 
                 // FROM BACKEND
                 const response = await fetch(
-                    "http://localhost:5000/api/organizations"
+                    "https://saral-hh7e.onrender.com/api/organizations"
                 );
 
                 const data = await response.json();
