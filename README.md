@@ -306,28 +306,28 @@ https://saral-hh7e.onrender.com
 
 ## 🏠 Landing Page
 
-<img src="./src/assets/images/screenshots/1.jpg" width="100%" />
+<img src="https://raw.githubusercontent.com/Zaid-khan01/Saral/main/Frontend/src/assets/images/screenshots/1.jpg" width="100%" />
 
 
 ---
 
 ## 👤 User Dashboard
-<img src="./src/assets/images/screenshots/2.jpg" width="100%" />
+<img src="https://raw.githubusercontent.com/Zaid-khan01/Saral/main/Frontend/src/assets/images/screenshots/2.jpg" width="100%" />
 
 ---
 
 ## 🎟️ Organization Dashboard
-<img src="./src/assets/images/screenshots/4.jpg" width="100%" />
+<img src="https://raw.githubusercontent.com/Zaid-khan01/Saral/main/Frontend/src/assets/images/screenshots/4.jpg" width="100%" />
 
 ---
 
 ## 📡 Token Booking
-<img src="./src/assets/images/screenshots/3.jpg" width="100%" />
+<img src="https://raw.githubusercontent.com/Zaid-khan01/Saral/main/Frontend/src/assets/images/screenshots/3.jpg" width="100%" />
 
 ---
 
 ## 📡 Queue Operations
-<img src="./src/assets/images/screenshots/5.jpg" width="100%" />
+<img src="https://raw.githubusercontent.com/Zaid-khan01/Saral/main/Frontend/src/assets/images/screenshots/5.jpg" width="100%" />
 
 
 ---
