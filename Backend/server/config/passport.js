@@ -17,7 +17,7 @@ passport.use(
                 process.env.GOOGLE_CLIENT_SECRET,
 
             callbackURL:
-                "http://localhost:5000/api/users/google/callback",
+                "https://saral-hh7e.onrender.com/api/users/google/callback",
         },
 
         async (
