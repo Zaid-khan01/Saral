@@ -32,6 +32,13 @@ const OrganizationDetails = () => {
     const [organization, setOrganization] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    const [formData, setFormData] = useState({
+        fullName: "",
+        mobile: "",
+        purpose: "",
+        members: 1,
+    });
+    
     useEffect(() => {
 
         const fetchOrganization = async () => {
@@ -132,12 +139,6 @@ const OrganizationDetails = () => {
         );
     }
 
-    const [formData, setFormData] = useState({
-        fullName: "",
-        mobile: "",
-        purpose: "",
-        members: 1,
-    });
 
     const handleChange = (e) => {
         setFormData({
