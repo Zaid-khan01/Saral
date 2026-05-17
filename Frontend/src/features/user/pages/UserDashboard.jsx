@@ -164,7 +164,21 @@ const UserDashboard = () => {
 
     }, []);
 
+    const handleLogout = () => {
 
+        // REMOVE USER DATA
+        localStorage.removeItem("user");
+
+        localStorage.removeItem("token");
+
+        localStorage.removeItem("activeOrganization");
+
+        localStorage.removeItem("dashboardTab");
+
+        // REDIRECT TO HOME PAGE
+        navigate("/");
+
+    };
     useEffect(() => {
         if (mainContentRef.current) {
             mainContentRef.current.scrollTo({
@@ -463,69 +477,72 @@ const UserDashboard = () => {
                     >
 
                         <button
+                            onClick={handleLogout}
                             className="
-                w-full
-                h-[56px]
-                rounded-2xl
-                bg-red-50
-                border
-                border-red-100
-                text-red-600
-                flex
-                items-center
-                justify-between
-                px-4
-                hover:bg-red-100
-                transition-all
-                duration-300
-                group
-            "
+                            w-full
+                            h-[56px]
+                        rounded-2xl
+                        bg-red-50
+                        border
+                        border-red-100
+                        text-red-600
+                        flex
+                        items-center
+                        justify-between
+                        px-4
+                        hover:bg-red-100
+                        transition-all
+                        duration-300
+                        group
+                        "
                         >
 
-                            <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-3">
 
-                                <UserRound size={18} />
+                            <UserRound size={18} />
 
-                                <span className="text-[14px] font-medium">
-                                    Logout
-                                </span>
+                            <span className="text-[14px] font-medium">
+                                Logout
+                            </span>
 
-                            </div>
+                        </div>
 
-                            <ChevronRight
-                                size={16}
-                                className="
+                        <ChevronRight
+                            size={16}
+                            className="
                     opacity-70
                     group-hover:translate-x-1
                     transition-all
                 "
-                            />
+                        />
 
-                        </button>
-
-                    </div>
+                    </button>
 
                 </div>
 
+        </div>
 
-            </aside>
-            {/* OVERLAY */}
-            {mobileSidebar && (
-                <div
-                    onClick={() => setMobileSidebar(false)}
-                    className="fixed inset-0 bg-black/40 z-40 lg:hidden"
-                />
-            )}
 
-            {/* MAIN */}
-            <main
-                ref={mainContentRef}
-                className="flex-1 min-w-0 lg:ml-[285px] h-screen overflow-y-auto scrollbar-hide"
-            >
+            </aside >
+    {/* OVERLAY */ }
+{
+    mobileSidebar && (
+        <div
+            onClick={() => setMobileSidebar(false)}
+            className="fixed inset-0 bg-black/40 z-40 lg:hidden"
+        />
+    )
+}
 
-                {/* TOPBAR */}
-                <header
-                    className="
+{/* MAIN */ }
+<main
+    ref={mainContentRef}
+    className="flex-1 min-w-0 lg:ml-[285px] h-screen overflow-y-auto scrollbar-hide"
+>
+
+    {/* TOPBAR */}
+    <header
+        className="
         sticky
         top-0
         z-40
@@ -540,43 +557,43 @@ const UserDashboard = () => {
         items-center
         justify-between
     "
-                >
+    >
 
-                    {/* LEFT */}
-                    <div className="flex items-center gap-4">
+        {/* LEFT */}
+        <div className="flex items-center gap-4">
 
-                        <button
-                            onClick={() => setMobileSidebar(true)}
-                            className="lg:hidden"
-                        >
-                            <Menu size={22} />
-                        </button>
+            <button
+                onClick={() => setMobileSidebar(true)}
+                className="lg:hidden"
+            >
+                <Menu size={22} />
+            </button>
 
-                        <div>
+            <div>
 
-                            <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2">
 
-                                <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                    <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
 
-                                <p className="text-xs uppercase tracking-[0.2em] text-slate-400">
-                                    Real-Time Queue
-                                </p>
+                    <p className="text-xs uppercase tracking-[0.2em] text-slate-400">
+                        Real-Time Queue
+                    </p>
 
-                            </div>
+                </div>
 
-                            <h1 className="mt-1 text-[28px] font-bold tracking-tight text-slate-900">
-                                User Dashboard
-                            </h1>
+                <h1 className="mt-1 text-[28px] font-bold tracking-tight text-slate-900">
+                    User Dashboard
+                </h1>
 
-                        </div>
+            </div>
 
-                    </div>
+        </div>
 
-                    {/* RIGHT */}
-                    <div className="flex items-center gap-3">
+        {/* RIGHT */}
+        <div className="flex items-center gap-3">
 
-                        <div
-                            className="
+            <div
+                className="
                 hidden
                 md:flex
                 items-center
@@ -589,28 +606,28 @@ const UserDashboard = () => {
                 bg-white
                 px-4
               "
-                        >
+            >
 
-                            <Search
-                                size={16}
-                                className="text-slate-400"
-                            />
+                <Search
+                    size={16}
+                    className="text-slate-400"
+                />
 
-                            <input
-                                type="text"
-                                placeholder="Search nearby organizations..."
-                                className="
+                <input
+                    type="text"
+                    placeholder="Search nearby organizations..."
+                    className="
                   flex-1
                   bg-transparent
                   outline-none
                   text-sm
                 "
-                            />
+                />
 
-                        </div>
+            </div>
 
-                        <button
-                            className="
+            <button
+                className="
                 h-[48px]
                 px-5
                 rounded-2xl
@@ -624,26 +641,26 @@ const UserDashboard = () => {
                 hover:bg-black
                 transition-all
               "
-                        >
+            >
 
-                            <Sparkles size={16} />
+                <Sparkles size={16} />
 
-                            Book Queue
+                Book Queue
 
-                        </button>
+            </button>
 
-                    </div>
+        </div>
 
-                </header>
+    </header>
 
-                {/* CONTENT */}
-                <div className="p-5 lg:p-7 flex flex-col gap-5">
-                    {active === "Overview" && (
-                        <>
+    {/* CONTENT */}
+    <div className="p-5 lg:p-7 flex flex-col gap-5">
+        {active === "Overview" && (
+            <>
 
-                            {/* HERO */}
-                            <div
-                                className="
+                {/* HERO */}
+                <div
+                    className="
               relative
               overflow-hidden
               rounded-[36px]
@@ -654,14 +671,14 @@ const UserDashboard = () => {
               p-7
               text-white
             "
-                            >
+                >
 
-                                <div className="absolute top-[-80px] right-[-80px] w-[260px] h-[260px] rounded-full bg-cyan-500/20 blur-3xl" />
+                    <div className="absolute top-[-80px] right-[-80px] w-[260px] h-[260px] rounded-full bg-cyan-500/20 blur-3xl" />
 
-                                <div className="absolute bottom-[-100px] left-[-100px] w-[240px] h-[240px] rounded-full bg-violet-500/20 blur-3xl" />
+                    <div className="absolute bottom-[-100px] left-[-100px] w-[240px] h-[240px] rounded-full bg-violet-500/20 blur-3xl" />
 
-                                <div
-                                    className="
+                    <div
+                        className="
         relative
         z-10
         flex
@@ -671,23 +688,23 @@ const UserDashboard = () => {
         justify-between
         gap-10
     "
-                                >
+                    >
 
-                                    {/* LEFT */}
-                                    <div className="flex-1 min-w-0">
+                        {/* LEFT */}
+                        <div className="flex-1 min-w-0">
 
-                                        <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-2">
 
-                                            <Wifi size={15} className="text-emerald-400" />
+                                <Wifi size={15} className="text-emerald-400" />
 
-                                            <p className="text-xs uppercase tracking-[0.2em] text-slate-400">
-                                                Live Queue Tracking
-                                            </p>
+                                <p className="text-xs uppercase tracking-[0.2em] text-slate-400">
+                                    Live Queue Tracking
+                                </p>
 
-                                        </div>
+                            </div>
 
-                                        <h1
-                                            className="
+                            <h1
+                                className="
                     mt-4
                     text-[42px]
                     md:text-[56px]
@@ -695,21 +712,21 @@ const UserDashboard = () => {
                     leading-none
                     tracking-tight
                   "
-                                        >
-                                            Your Queue Is
-                                            <br />
-                                            Moving Smoothly
-                                        </h1>
+                            >
+                                Your Queue Is
+                                <br />
+                                Moving Smoothly
+                            </h1>
 
-                                        <p className="mt-6 max-w-[680px] text-slate-300 leading-relaxed">
-                                            Track your token in real-time, receive smart notifications,
-                                            and avoid standing in long physical queues using Saral AI.
-                                        </p>
+                            <p className="mt-6 max-w-[680px] text-slate-300 leading-relaxed">
+                                Track your token in real-time, receive smart notifications,
+                                and avoid standing in long physical queues using Saral AI.
+                            </p>
 
-                                        <div className="mt-8 flex flex-wrap gap-4">
+                            <div className="mt-8 flex flex-wrap gap-4">
 
-                                            <button
-                                                className="
+                                <button
+                                    className="
                       h-[54px]
                       px-6
                       rounded-2xl
@@ -722,16 +739,16 @@ const UserDashboard = () => {
                       hover:scale-[1.02]
                       transition-all
                     "
-                                            >
+                                >
 
-                                                Track My Token
+                                    Track My Token
 
-                                                <ArrowUpRight size={18} />
+                                    <ArrowUpRight size={18} />
 
-                                            </button>
+                                </button>
 
-                                            <button
-                                                className="
+                                <button
+                                    className="
                       h-[54px]
                       px-6
                       rounded-2xl
@@ -744,17 +761,17 @@ const UserDashboard = () => {
                       hover:bg-white/10
                       transition-all
                     "
-                                            >
-                                                Explore Nearby
-                                            </button>
+                                >
+                                    Explore Nearby
+                                </button>
 
-                                        </div>
+                            </div>
 
-                                    </div>
+                        </div>
 
-                                    {/* RIGHT CARD */}
-                                    <div
-                                        className="
+                        {/* RIGHT CARD */}
+                        <div
+                            className="
         w-full
         lg:w-[340px]
         shrink-0
@@ -765,30 +782,30 @@ const UserDashboard = () => {
                   border-white/10
                   p-6
                 "
-                                    >
+                        >
 
-                                        <p className="text-sm text-slate-300">
-                                            Current Active Token
-                                        </p>
+                            <p className="text-sm text-slate-300">
+                                Current Active Token
+                            </p>
 
-                                        <h2 className="mt-4 text-[72px] leading-none font-bold">
-                                            A-31
-                                        </h2>
+                            <h2 className="mt-4 text-[72px] leading-none font-bold">
+                                A-31
+                            </h2>
 
-                                        <div className="mt-6">
+                            <div className="mt-6">
 
-                                            <div className="flex justify-between text-sm mb-3 text-slate-300">
+                                <div className="flex justify-between text-sm mb-3 text-slate-300">
 
-                                                <span>Queue Progress</span>
+                                    <span>Queue Progress</span>
 
-                                                <span>{progress}%</span>
+                                    <span>{progress}%</span>
 
-                                            </div>
+                                </div>
 
-                                            <div className="w-full h-3 rounded-full bg-white/10 overflow-hidden">
+                                <div className="w-full h-3 rounded-full bg-white/10 overflow-hidden">
 
-                                                <div
-                                                    className="
+                                    <div
+                                        className="
                         h-full
                         rounded-full
                         bg-gradient-to-r
@@ -797,80 +814,80 @@ const UserDashboard = () => {
                         transition-all
                         duration-300
                       "
-                                                    style={{
-                                                        width: `${progress}%`,
-                                                    }}
-                                                />
-
-                                            </div>
-
-                                        </div>
-
-                                        <div className="mt-7 flex items-center justify-between">
-
-                                            <div>
-
-                                                <p className="text-xs text-slate-400">
-                                                    Estimated Wait
-                                                </p>
-
-                                                <h4 className="mt-1 text-lg font-semibold">
-                                                    12 Minutes
-                                                </h4>
-
-                                            </div>
-
-                                            <div className="flex items-center gap-2 text-emerald-300">
-
-                                                <CircleCheckBig size={18} />
-
-                                                Live
-
-                                            </div>
-
-                                        </div>
-
-                                    </div>
+                                        style={{
+                                            width: `${progress}%`,
+                                        }}
+                                    />
 
                                 </div>
 
                             </div>
 
-                            {/* STATS */}
-                            <div className="grid xl:grid-cols-4 sm:grid-cols-2 gap-4">
+                            <div className="mt-7 flex items-center justify-between">
 
-                                {[
-                                    {
-                                        title: "Current Token",
-                                        value: "A-31",
-                                        icon: <Ticket size={20} />,
-                                        color: "from-cyan-500 to-blue-600",
-                                    },
+                                <div>
 
-                                    {
-                                        title: "People Ahead",
-                                        value: "07",
-                                        icon: <UserRound size={20} />,
-                                        color: "from-violet-500 to-indigo-600",
-                                    },
+                                    <p className="text-xs text-slate-400">
+                                        Estimated Wait
+                                    </p>
 
-                                    {
-                                        title: "Estimated Wait",
-                                        value: "12m",
-                                        icon: <Clock3 size={20} />,
-                                        color: "from-amber-500 to-orange-500",
-                                    },
+                                    <h4 className="mt-1 text-lg font-semibold">
+                                        12 Minutes
+                                    </h4>
 
-                                    {
-                                        title: "Queue Health",
-                                        value: "94%",
-                                        icon: <TrendingUp size={20} />,
-                                        color: "from-emerald-500 to-green-600",
-                                    },
-                                ].map((item, index) => (
-                                    <div
-                                        key={index}
-                                        className="
+                                </div>
+
+                                <div className="flex items-center gap-2 text-emerald-300">
+
+                                    <CircleCheckBig size={18} />
+
+                                    Live
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                {/* STATS */}
+                <div className="grid xl:grid-cols-4 sm:grid-cols-2 gap-4">
+
+                    {[
+                        {
+                            title: "Current Token",
+                            value: "A-31",
+                            icon: <Ticket size={20} />,
+                            color: "from-cyan-500 to-blue-600",
+                        },
+
+                        {
+                            title: "People Ahead",
+                            value: "07",
+                            icon: <UserRound size={20} />,
+                            color: "from-violet-500 to-indigo-600",
+                        },
+
+                        {
+                            title: "Estimated Wait",
+                            value: "12m",
+                            icon: <Clock3 size={20} />,
+                            color: "from-amber-500 to-orange-500",
+                        },
+
+                        {
+                            title: "Queue Health",
+                            value: "94%",
+                            icon: <TrendingUp size={20} />,
+                            color: "from-emerald-500 to-green-600",
+                        },
+                    ].map((item, index) => (
+                        <div
+                            key={index}
+                            className="
                   relative
                   overflow-hidden
                   rounded-[30px]
@@ -879,10 +896,10 @@ const UserDashboard = () => {
                   border-slate-200
                   p-5
                 "
-                                    >
+                        >
 
-                                        <div
-                                            className={`
+                            <div
+                                className={`
                     absolute
                     top-[-20px]
                     right-[-20px]
@@ -894,14 +911,14 @@ const UserDashboard = () => {
                     bg-gradient-to-br
                     ${item.color}
                   `}
-                                        />
+                            />
 
-                                        <div className="relative z-10">
+                            <div className="relative z-10">
 
-                                            <div className="flex items-center justify-between">
+                                <div className="flex items-center justify-between">
 
-                                                <div
-                                                    className={`
+                                    <div
+                                        className={`
                         w-12
                         h-12
                         rounded-2xl
@@ -912,71 +929,71 @@ const UserDashboard = () => {
                         items-center
                         justify-center
                       `}
-                                                >
+                                    >
 
-                                                    {item.icon}
-
-                                                </div>
-
-                                                <div className="flex items-center gap-1 text-emerald-600 text-sm font-medium">
-
-                                                    <ArrowUpRight size={15} />
-
-                                                    12%
-
-                                                </div>
-
-                                            </div>
-
-                                            <h2 className="mt-5 text-[38px] leading-none font-bold tracking-tight text-slate-900">
-                                                {item.value}
-                                            </h2>
-
-                                            <p className="mt-2 text-sm text-slate-500">
-                                                {item.title}
-                                            </p>
-
-                                        </div>
+                                        {item.icon}
 
                                     </div>
-                                ))}
+
+                                    <div className="flex items-center gap-1 text-emerald-600 text-sm font-medium">
+
+                                        <ArrowUpRight size={15} />
+
+                                        12%
+
+                                    </div>
+
+                                </div>
+
+                                <h2 className="mt-5 text-[38px] leading-none font-bold tracking-tight text-slate-900">
+                                    {item.value}
+                                </h2>
+
+                                <p className="mt-2 text-sm text-slate-500">
+                                    {item.title}
+                                </p>
 
                             </div>
 
-                            {/* MAIN GRID */}
+                        </div>
+                    ))}
 
-                            <div className="grid xl:grid-cols-[1.3fr_420px] gap-5">
+                </div>
 
-                                {/* LEFT */}
-                                <div className="flex flex-col gap-5">
+                {/* MAIN GRID */}
 
-                                    {/* LIVE TRACKING */}
-                                    <div
-                                        className="
+                <div className="grid xl:grid-cols-[1.3fr_420px] gap-5">
+
+                    {/* LEFT */}
+                    <div className="flex flex-col gap-5">
+
+                        {/* LIVE TRACKING */}
+                        <div
+                            className="
                   rounded-[32px]
                   bg-white
                   border
                   border-slate-200
                   p-6
                 "
-                                    >
+                        >
 
-                                        <div className="flex items-center justify-between flex-wrap gap-4">
+                            <div className="flex items-center justify-between flex-wrap gap-4">
 
-                                            <div>
+                                <div>
 
-                                                <p className="text-sm text-slate-500">
-                                                    Real-Time Tracking
-                                                </p>
+                                    <p className="text-sm text-slate-500">
+                                        Real-Time Tracking
+                                    </p>
 
-                                                <h2 className="mt-2 text-[30px] font-bold tracking-tight text-slate-900">
-                                                    Queue Activity
-                                                </h2>
+                                    <h2 className="mt-2 text-[30px] font-bold tracking-tight text-slate-900">
+                                        Queue Activity
+                                    </h2>
 
-                                            </div>
+                                </div>
 
-                                            <div
-                                                className="
+                                <div
+                                    className="
                       px-4
                       py-2
                       rounded-2xl
@@ -987,38 +1004,38 @@ const UserDashboard = () => {
                       font-medium
                       text-emerald-700
                     "
-                                            >
-                                                AI Prediction Active
-                                            </div>
+                                >
+                                    AI Prediction Active
+                                </div>
 
-                                        </div>
+                            </div>
 
-                                        <div className="mt-10 flex flex-col gap-8">
+                            <div className="mt-10 flex flex-col gap-8">
 
-                                            {[
-                                                {
-                                                    token: "A-24",
-                                                    status: "Completed",
-                                                },
+                                {[
+                                    {
+                                        token: "A-24",
+                                        status: "Completed",
+                                    },
 
-                                                {
-                                                    token: "A-25",
-                                                    status: "Completed",
-                                                },
+                                    {
+                                        token: "A-25",
+                                        status: "Completed",
+                                    },
 
-                                                {
-                                                    token: "A-26",
-                                                    status: "Serving",
-                                                },
+                                    {
+                                        token: "A-26",
+                                        status: "Serving",
+                                    },
 
-                                                {
-                                                    token: "A-31",
-                                                    status: "Your Token",
-                                                },
-                                            ].map((item, index) => (
-                                                <div
-                                                    key={index}
-                                                    className="
+                                    {
+                                        token: "A-31",
+                                        status: "Your Token",
+                                    },
+                                ].map((item, index) => (
+                                    <div
+                                        key={index}
+                                        className="
                         flex
                         items-center
                         justify-between
@@ -1027,12 +1044,12 @@ const UserDashboard = () => {
                         border-slate-100
                         p-5
                       "
-                                                >
+                                    >
 
-                                                    <div className="flex items-center gap-4">
+                                        <div className="flex items-center gap-4">
 
-                                                        <div
-                                                            className="
+                                            <div
+                                                className="
                             w-14
                             h-14
                             rounded-2xl
@@ -1043,68 +1060,68 @@ const UserDashboard = () => {
                             justify-center
                             font-bold
                           "
-                                                        >
-                                                            {item.token}
-                                                        </div>
+                                            >
+                                                {item.token}
+                                            </div>
 
-                                                        <div>
+                                            <div>
 
-                                                            <h4 className="text-lg font-semibold text-slate-900">
-                                                                {item.status}
-                                                            </h4>
+                                                <h4 className="text-lg font-semibold text-slate-900">
+                                                    {item.status}
+                                                </h4>
 
-                                                            <p className="mt-1 text-sm text-slate-500">
-                                                                Live Queue Update
-                                                            </p>
+                                                <p className="mt-1 text-sm text-slate-500">
+                                                    Live Queue Update
+                                                </p>
 
-                                                        </div>
+                                            </div>
 
-                                                    </div>
+                                        </div>
 
-                                                    <div className="flex items-center gap-2 text-emerald-600">
+                                        <div className="flex items-center gap-2 text-emerald-600">
 
-                                                        <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                                            <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
 
-                                                        Live
-
-                                                    </div>
-
-                                                </div>
-                                            ))}
+                                            Live
 
                                         </div>
 
                                     </div>
+                                ))}
 
-                                    {/* ORGANIZATIONS */}
-                                    <div
-                                        className="
+                            </div>
+
+                        </div>
+
+                        {/* ORGANIZATIONS */}
+                        <div
+                            className="
                   rounded-[32px]
                   bg-white
                   border
                   border-slate-200
                   p-6
                 "
-                                    >
+                        >
 
-                                        <div>
+                            <div>
 
-                                            <p className="text-sm text-slate-500">
-                                                Nearby Organizations
-                                            </p>
+                                <p className="text-sm text-slate-500">
+                                    Nearby Organizations
+                                </p>
 
-                                            <h2 className="mt-2 text-[30px] font-bold tracking-tight text-slate-900">
-                                                Book New Queue
-                                            </h2>
+                                <h2 className="mt-2 text-[30px] font-bold tracking-tight text-slate-900">
+                                    Book New Queue
+                                </h2>
 
-                                        </div>
+                            </div>
 
-                                        <div className="mt-8 grid md:grid-cols-2 gap-5">
+                            <div className="mt-8 grid md:grid-cols-2 gap-5">
 
-                                            {organizations.map((item, index) => (
-                                                <div
-                                                    key={index}
-                                                    className="
+                                {organizations.map((item, index) => (
+                                    <div
+                                        key={index}
+                                        className="
                         relative
                         overflow-hidden
                         rounded-[28px]
@@ -1116,10 +1133,10 @@ const UserDashboard = () => {
                         transition-all
                         duration-300
                       "
-                                                >
+                                    >
 
-                                                    <div
-                                                        className={`
+                                        <div
+                                            className={`
                           absolute
                           top-[-20px]
                           right-[-20px]
@@ -1131,14 +1148,14 @@ const UserDashboard = () => {
                           bg-gradient-to-br
                           ${item.color}
                         `}
-                                                    />
+                                        />
 
-                                                    <div className="relative z-10">
+                                        <div className="relative z-10">
 
-                                                        <div className="flex items-center justify-between">
+                                            <div className="flex items-center justify-between">
 
-                                                            <div
-                                                                className={`
+                                                <div
+                                                    className={`
                               w-12
                               h-12
                               rounded-2xl
@@ -1149,42 +1166,42 @@ const UserDashboard = () => {
                               items-center
                               justify-center
                             `}
-                                                            >
+                                                >
 
-                                                                {item.icon}
+                                                    {item.icon}
 
-                                                            </div>
+                                                </div>
 
-                                                            <Building2
-                                                                size={18}
-                                                                className="text-slate-400"
-                                                            />
+                                                <Building2
+                                                    size={18}
+                                                    className="text-slate-400"
+                                                />
 
-                                                        </div>
+                                            </div>
 
-                                                        <h3 className="mt-5 text-xl font-semibold text-slate-900">
-                                                            {item.organizationName}
-                                                        </h3>
+                                            <h3 className="mt-5 text-xl font-semibold text-slate-900">
+                                                {item.organizationName}
+                                            </h3>
 
-                                                        <p className="mt-1 text-sm text-slate-500">
-                                                            {item.type}
-                                                        </p>
+                                            <p className="mt-1 text-sm text-slate-500">
+                                                {item.type}
+                                            </p>
 
-                                                        <div className="mt-5 flex items-center justify-between text-sm">
+                                            <div className="mt-5 flex items-center justify-between text-sm">
 
-                                                            <span className="text-slate-500">
-                                                                Wait: {item.wait || "10 mins"}
-                                                            </span>
+                                                <span className="text-slate-500">
+                                                    Wait: {item.wait || "10 mins"}
+                                                </span>
 
-                                                            <span className="text-emerald-600 font-medium">
-                                                                {item.crowd || "Medium"}
-                                                            </span>
+                                                <span className="text-emerald-600 font-medium">
+                                                    {item.crowd || "Medium"}
+                                                </span>
 
-                                                        </div>
+                                            </div>
 
-                                                        <button
-                                                            onClick={() => setActive("Book Token")}
-                                                            className="
+                                            <button
+                                                onClick={() => setActive("Book Token")}
+                                                className="
                             mt-6
                             w-full
                             h-[48px]
@@ -1195,27 +1212,27 @@ const UserDashboard = () => {
                             hover:bg-black
                             transition-all
                           "
-                                                        >
-                                                            Book Token
-                                                        </button>
-
-                                                    </div>
-
-                                                </div>
-                                            ))}
+                                            >
+                                                Book Token
+                                            </button>
 
                                         </div>
 
                                     </div>
+                                ))}
 
-                                </div>
+                            </div>
 
-                                {/* RIGHT */}
-                                <div className="flex flex-col gap-5">
+                        </div>
 
-                                    {/* SMART ALERT */}
-                                    <div
-                                        className="
+                    </div>
+
+                    {/* RIGHT */}
+                    <div className="flex flex-col gap-5">
+
+                        {/* SMART ALERT */}
+                        <div
+                            className="
                   relative
                   overflow-hidden
                   rounded-[32px]
@@ -1225,70 +1242,70 @@ const UserDashboard = () => {
                   p-7
                   text-white
                 "
-                                    >
+                        >
 
-                                        <div className="absolute bottom-[-50px] right-[-50px] w-[180px] h-[180px] rounded-full bg-white/10" />
+                            <div className="absolute bottom-[-50px] right-[-50px] w-[180px] h-[180px] rounded-full bg-white/10" />
 
-                                        <div className="relative z-10">
+                            <div className="relative z-10">
 
-                                            <p className="text-indigo-100 text-sm">
-                                                Smart Notification
-                                            </p>
+                                <p className="text-indigo-100 text-sm">
+                                    Smart Notification
+                                </p>
 
-                                            <h2 className="mt-5 text-[42px] font-bold leading-tight">
-                                                Your Turn
-                                                <br />
-                                                In 12 Minutes
-                                            </h2>
+                                <h2 className="mt-5 text-[42px] font-bold leading-tight">
+                                    Your Turn
+                                    <br />
+                                    In 12 Minutes
+                                </h2>
 
-                                            <div className="mt-7 flex items-center gap-3">
+                                <div className="mt-7 flex items-center gap-3">
 
-                                                <div className="w-2.5 h-2.5 rounded-full bg-white animate-pulse" />
+                                    <div className="w-2.5 h-2.5 rounded-full bg-white animate-pulse" />
 
-                                                <span className="text-indigo-100 text-sm">
-                                                    AI Queue Prediction Enabled
-                                                </span>
+                                    <span className="text-indigo-100 text-sm">
+                                        AI Queue Prediction Enabled
+                                    </span>
 
-                                            </div>
+                                </div>
 
-                                        </div>
+                            </div>
 
-                                    </div>
+                        </div>
 
-                                    {/* QUICK STATUS */}
-                                    <div
-                                        className="
+                        {/* QUICK STATUS */}
+                        <div
+                            className="
                   rounded-[32px]
                   bg-white
                   border
                   border-slate-200
                   p-6
                 "
-                                    >
+                        >
 
-                                        <div>
+                            <div>
 
-                                            <h2 className="text-[26px] font-bold tracking-tight text-slate-900">
-                                                Queue Insights
-                                            </h2>
+                                <h2 className="text-[26px] font-bold tracking-tight text-slate-900">
+                                    Queue Insights
+                                </h2>
 
-                                            <p className="mt-1 text-sm text-slate-500">
-                                                Live operational status
-                                            </p>
+                                <p className="mt-1 text-sm text-slate-500">
+                                    Live operational status
+                                </p>
 
-                                        </div>
+                            </div>
 
-                                        <div className="mt-7 flex flex-col gap-4">
+                            <div className="mt-7 flex flex-col gap-4">
 
-                                            {[
-                                                "Queue speed increased by 18%",
-                                                "Hospital crowd currently medium",
-                                                "Your token approaching soon",
-                                                "Notifications are enabled",
-                                            ].map((item, index) => (
-                                                <div
-                                                    key={index}
-                                                    className="
+                                {[
+                                    "Queue speed increased by 18%",
+                                    "Hospital crowd currently medium",
+                                    "Your token approaching soon",
+                                    "Notifications are enabled",
+                                ].map((item, index) => (
+                                    <div
+                                        key={index}
+                                        className="
                         rounded-2xl
                         border
                         border-slate-100
@@ -1296,59 +1313,59 @@ const UserDashboard = () => {
                         hover:bg-slate-50
                         transition-all
                       "
-                                                >
+                                    >
 
-                                                    <div className="flex items-center gap-3">
+                                        <div className="flex items-center gap-3">
 
-                                                        <div className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
+                                            <div className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
 
-                                                        <p className="text-sm text-slate-700">
-                                                            {item}
-                                                        </p>
-
-                                                    </div>
-
-                                                </div>
-                                            ))}
+                                            <p className="text-sm text-slate-700">
+                                                {item}
+                                            </p>
 
                                         </div>
 
                                     </div>
+                                ))}
 
-                                    {/* MINI CARDS */}
-                                    <div className="grid gap-5">
+                            </div>
 
-                                        {[
-                                            {
-                                                title: "Queue Accuracy",
-                                                value: "96%",
-                                                icon: <TrendingUp size={22} />,
-                                                bg: "bg-emerald-50 border-emerald-100",
-                                                iconBg: "bg-emerald-100 text-emerald-700",
-                                            },
+                        </div>
 
-                                            {
-                                                title: "Average Response",
-                                                value: "2.1s",
-                                                icon: <TimerReset size={22} />,
-                                                bg: "bg-violet-50 border-violet-100",
-                                                iconBg: "bg-violet-100 text-violet-700",
-                                            },
-                                        ].map((item, index) => (
-                                            <div
-                                                key={index}
-                                                className={`
+                        {/* MINI CARDS */}
+                        <div className="grid gap-5">
+
+                            {[
+                                {
+                                    title: "Queue Accuracy",
+                                    value: "96%",
+                                    icon: <TrendingUp size={22} />,
+                                    bg: "bg-emerald-50 border-emerald-100",
+                                    iconBg: "bg-emerald-100 text-emerald-700",
+                                },
+
+                                {
+                                    title: "Average Response",
+                                    value: "2.1s",
+                                    icon: <TimerReset size={22} />,
+                                    bg: "bg-violet-50 border-violet-100",
+                                    iconBg: "bg-violet-100 text-violet-700",
+                                },
+                            ].map((item, index) => (
+                                <div
+                                    key={index}
+                                    className={`
                       rounded-[30px]
                       border
                       p-5
                       ${item.bg}
                     `}
-                                            >
+                                >
 
-                                                <div className="flex items-center justify-between">
+                                    <div className="flex items-center justify-between">
 
-                                                    <div
-                                                        className={`
+                                        <div
+                                            className={`
                           w-12
                           h-12
                           rounded-2xl
@@ -1357,59 +1374,59 @@ const UserDashboard = () => {
                           justify-center
                           ${item.iconBg}
                         `}
-                                                    >
+                                        >
 
-                                                        {item.icon}
+                                            {item.icon}
 
-                                                    </div>
+                                        </div>
 
-                                                    <ArrowUpRight
-                                                        size={18}
-                                                        className="text-emerald-600"
-                                                    />
-
-                                                </div>
-
-                                                <h2 className="mt-5 text-[38px] leading-none font-bold tracking-tight text-slate-900">
-                                                    {item.value}
-                                                </h2>
-
-                                                <p className="mt-2 text-sm text-slate-600">
-                                                    {item.title}
-                                                </p>
-
-                                            </div>
-                                        ))}
+                                        <ArrowUpRight
+                                            size={18}
+                                            className="text-emerald-600"
+                                        />
 
                                     </div>
 
+                                    <h2 className="mt-5 text-[38px] leading-none font-bold tracking-tight text-slate-900">
+                                        {item.value}
+                                    </h2>
+
+                                    <p className="mt-2 text-sm text-slate-600">
+                                        {item.title}
+                                    </p>
+
                                 </div>
+                            ))}
 
-                            </div>
-                        </>
-                    )}
+                        </div>
 
-                    {active === "Book Token" && (
-                        <BookTokenPanel />
-                    )}
-
-                    {active === "Live Tracking" && (
-                        <LiveTrackingPanel />
-                    )}
-
-                    {active === "Profile" && (
-                        <ProfilePanel />
-                    )}
-
-                    {active === "Settings" && (
-                        <SettingsPanel />
-                    )}
+                    </div>
 
                 </div>
+            </>
+        )}
 
-            </main>
+        {active === "Book Token" && (
+            <BookTokenPanel />
+        )}
 
-        </div>
+        {active === "Live Tracking" && (
+            <LiveTrackingPanel />
+        )}
+
+        {active === "Profile" && (
+            <ProfilePanel />
+        )}
+
+        {active === "Settings" && (
+            <SettingsPanel />
+        )}
+
+    </div>
+
+</main>
+
+        </div >
     );
 };
 
