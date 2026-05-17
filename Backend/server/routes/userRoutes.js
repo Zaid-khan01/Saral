@@ -25,7 +25,7 @@ router.get(
     passport.authenticate("google", {
         session: false,
         failureRedirect:
-            "http://localhost:5173/login",
+            "https://saral-mauve.vercel.app/user/login",
     }),
 
     (req, res) => {
@@ -37,7 +37,7 @@ router.get(
         );
 
         res.redirect(
-            `http://localhost:5173/google-success?token=${token}&user=${user}`
+            `https://saral-mauve.vercel.app/google-success?token=${token}&user=${user}`
         );
     }
 );
