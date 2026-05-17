@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import API from "../../../services/api";
 import {
     ArrowLeft,
     MapPin,
@@ -29,14 +29,101 @@ const OrganizationDetails = () => {
 
     const decodedName = decodeURIComponent(name);
 
-    const storedOrganizations =
-        JSON.parse(localStorage.getItem("organizations")) || [];
+    const [organization, setOrganization] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-    const organization =
-        storedOrganizations.find(
-            (item) => item.name === decodedName
+    useEffect(() => {
+
+        const fetchOrganization = async () => {
+
+            try {
+
+                const response = await API.get("/organizations");
+
+                const organizations = response.data.organizations;
+
+                const foundOrganization = organizations.find(
+                    (org) =>
+                        org.organizationName === decodedName
+                );
+
+                if (foundOrganization) {
+
+                    let color =
+                        "from-cyan-500 to-blue-600";
+
+                    if (
+                        foundOrganization.organizationType ===
+                        "Government Office"
+                    ) {
+                        color =
+                            "from-violet-500 to-indigo-600";
+                    }
+
+                    else if (
+                        foundOrganization.organizationType ===
+                        "Ration Shop"
+                    ) {
+                        color =
+                            "from-emerald-500 to-green-600";
+                    }
+
+                    else if (
+                        foundOrganization.organizationType ===
+                        "Service Center"
+                    ) {
+                        color =
+                            "from-amber-500 to-orange-500";
+                    }
+
+                    setOrganization({
+                        name:
+                            foundOrganization.organizationName,
+
+                        type:
+                            foundOrganization.organizationType,
+
+                        address:
+                            foundOrganization.address,
+
+                        services:
+                            foundOrganization.services,
+
+                        wait: "10 mins",
+
+                        rating: "4.7",
+
+                        status: "Tokens Available",
+
+                        crowd: "Medium",
+
+                        color,
+                    });
+                }
+
+            } catch (error) {
+
+                console.log(error);
+
+            } finally {
+
+                setLoading(false);
+
+            }
+        };
+
+        fetchOrganization();
+
+    }, [decodedName]);
+
+    if (loading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center text-2xl font-bold">
+                Loading...
+            </div>
         );
-
+    }
+    
     if (!organization) {
         return (
             <div className="min-h-screen flex items-center justify-center text-2xl font-bold text-slate-700">
